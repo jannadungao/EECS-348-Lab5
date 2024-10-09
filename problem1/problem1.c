@@ -6,11 +6,11 @@
 // Monthly Sales Report
 void monthlysales(char months[12][12], float sales[256]) {
     printf("Monthly Sales Report for 2024\n\n");
-    printf("Month\t\tSales\n");
+    printf("Month           Sales\n");
 
     // print each month and sales
     for (int i = 0; i < 12; i++) {
-        printf("%s\t%.2f\n", months[i], sales[i]);
+        printf("%-12s\t%.2f\n", months[i], sales[i]);
     }
     printf("\n");
 }
@@ -101,7 +101,7 @@ void six_month_avg(float sales[256]) {
 // Sales report highest to lowest
 void hightolow(char months[12][12], float sales[256]) {
     printf("Sales Report (Highest to Lowest): \n\n");
-    printf("Month\tSales\n");
+    printf("Month           Sales\n");
 
     int place[12];
     for (int i = 0; i < 12; i++) {
@@ -143,6 +143,7 @@ int main() {
     char months[12][12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
     int line = 0;
 
+    // read file line by line and save to an array and convert sales to floats
     while (line < 12 && fgets(sales[line], 256, input_ptr) != NULL) {
         fsales[line] = roundf(atof(sales[line]) * 100) / 100;
         line++;
