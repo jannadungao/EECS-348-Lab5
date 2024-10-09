@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 // Monthly Sales Report
 void monthlysales(char months[12][12], float sales[256]) {
@@ -7,7 +8,7 @@ void monthlysales(char months[12][12], float sales[256]) {
     printf("Month\t\tSales\n");
 
     for (int i = 0; i < 12; i++) {
-        printf("%s\t%f\n", months[i], sales);
+        printf("%s\t%f\n", months[i], sales[i]);
     }
     printf("\n");
 }
@@ -27,14 +28,9 @@ void sales_summary(char months, char sales) {
 }
 
 
-
-
-
-
-
 int main() {
     // get filename as input
-    char* filename;
+    char filename[256];
     printf("Enter file name: ");
     scanf("%s", filename);
 
@@ -44,20 +40,18 @@ int main() {
 
 
     // generate array w/ sales per month
-    char salesinitial[256];
-    float sales[256];
+    char sales[12][256];
+    float fsales[256];
     char months[12][12] = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+    int line = 0;
 
-    int i = 0;
-    while (fgets(salesinitial, 256, input_ptr) != NULL) {
-        salesinitial[i] = sales[i];
-        sales[i] = salesinitial[i];
-        i++;
-
+    while (line < 12 && fgets(*sales, 256, input_ptr) != NULL) {
+        fsales[line] = atof(sales[line]);
+        line++;
     }
     
     // function calls
-    monthlysales(months, sales);
+    monthlysales(months, fsales);
 
     // close files
     fclose(input_ptr);
