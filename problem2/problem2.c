@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #define SIZE 5
 
 // add matrices
@@ -41,10 +42,24 @@ int multiplyMatrices(int m1[SIZE][SIZE], int m2[SIZE][SIZE]) {
 
 
 // transpose matrices
+int transposeMatrix(int m[SIZE][SIZE]) {
+    int mnew[SIZE][SIZE];
 
+    for (int col = 0; col < sizeof(m[0]); col++) {
+        for (int row = 0; row < sizeof(m); row++) {
+            mnew[col][row] = m[row][col];
+        }
+    }
+
+    return mnew[SIZE][SIZE];
+}
 
 // print matrix
-
+void printMatrix(int m) {
+    for (int row = 0; row < sizeof(m); row++) {
+        printf("%d\n", m[row]);
+    }
+}
 
 int main() {
     // Define matrices/input
@@ -62,4 +77,17 @@ int main() {
         {10, 9, 8, 7, 6},
         {5, 4, 3, 2, 1}
     };
+
+    // function calls
+    printf("Addition of Matrices: \n");
+    printMatrix(addMatrices(m1, m2));
+
+    printf("Multiplication of Matrices: \n");
+    printMatrix(multiplyMatrices(m1, m2));
+
+    printf("Tranpsposition of first matrix: \n");
+    printMatrix(transposeMatrix(m1));
+
+    printf("Transposition of second matrix: \n");
+    printMatrix(transposeMatrix(m2));    
 }
